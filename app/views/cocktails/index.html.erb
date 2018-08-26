@@ -1,0 +1,35 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://images.unsplash.com/photo-1466838931486-92f3b5ff31a6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ec403466327bc5fe8d406522c849371f&auto=format&fit=crop&w=1487&q=80')">
+  <div class="">
+    <h1>My cocktails</h1>
+    <%= form_tag(cocktails_path, method: :get, class: "form-inline") do %>
+      <%= text_field_tag :query, params[:query], class: "form-control" %>
+      <%= submit_tag 'Search', name:nil, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="pad">
+    <div class="row">
+      <% @cocktails.each_with_index do |cocktail, index| %>
+      <div class="col-col-xs-12 col-md-3">
+        <%= link_to "", cocktail_path(cocktail), class: "hidden deleteCocktail", id: cocktail.id , method: :delete %>
+        <%= link_to cocktail_path(cocktail) do %>
+          <div class="cocktail-card">
+            <div class="cocktail-details">
+              <div class="cocktail-picture" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%=cocktail.picture_url%>');">
+              </div>
+              <div class="cocktail-erase" data-cocktailid="<%=cocktail.id%>" data-cocktailname="<%=cocktail.name%>" >
+                <i  class="fas fa-times"></i>
+              </div>
+            </div>
+            <div class="cocktail-footer">
+              <p><%= cocktail.name%></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

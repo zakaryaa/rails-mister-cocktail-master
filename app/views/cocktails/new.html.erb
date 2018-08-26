@@ -1,0 +1,23 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://images.unsplash.com/photo-1532117182044-031e7cd916ee?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5a43e535965d62203250faaa661182db&auto=format&fit=crop&w=800&q=80')">
+
+  <div class="banner-content">
+    <h1>Add a new cocktail</h1>
+    <br>
+    <div class="add-cocktail form-inline dropzone">
+      <%= simple_form_for(@cocktail,html: {id: "new_cocktail", class: ""}) do |f| %>
+        <%= f.input :name, label: false, placeholder: "Cocktail name" %>
+        <%= f.submit "Add a new cocktail", class: "btn btn-danger" %>
+        <%= f.file_field :picture_url, class: "hidden",id:"picture_url" %>
+          <div class="dz-message ">
+            <span class="text">
+            <img src="https://image.ibb.co/cw1TNS/icons8_upload_to_ftp_100.png" alt="Camera" />
+              Drop cocktail image here or click to upload.
+            </span>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+    <%= javascript_pack_tag "pages/new" %> 
+
